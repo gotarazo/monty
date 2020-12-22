@@ -12,7 +12,7 @@ EXTERN;
 
 void (*check_instruction(char *command))(stack_t**, unsigned int)
 {
-instruction_t instructions[] = {{"pall", pall},{"pint", pint},{"pop", pop},{"swap", swap},{"add", add},{"nop", nop},{NULL, NULL}};
+instruction_t instructions[] = {{"pall", pall}, {"pint", pint}, {"pop", pop}, {"swap", swap}, {"add", add}, {"nop", nop}, {NULL, NULL}};
 int i = 0;
 
 while (instructions[i].opcode)
