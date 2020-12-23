@@ -45,7 +45,7 @@ pop(stack, line_number);
 }
 else
 {
-fprintf(stderr, "L%d: division by zero\n", line_n);
+fprintf(stderr, "L%d: division by zero\n", line_number);
 exit(EXIT_FAILURE);
 }
 }
