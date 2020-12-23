@@ -22,7 +22,7 @@ printf("%c\n", (*stack)->n);
 }
 
 /**
-* monty_pstr -Prints the string contained in a stack_t linked list
+* pstr -Prints the string contained in a stack_t linked list
 * @stack: Pointer to stack (DL-List)
 * @line_number: Lenght of the list
 */

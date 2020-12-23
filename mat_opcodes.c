@@ -25,7 +25,7 @@ exit(EXIT_FAILURE);
 }
 
 /**
-* div -Divides the second top element of the stack by the top
+* _div -Divides the second top element of the stack by the top
 * @stack: Pointer to stack (DL-List)
 * @line_number: Lenght of the list
 */
