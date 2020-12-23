@@ -14,7 +14,8 @@ void (*check_instruction(char *command))(stack_t**, unsigned int)
 {
 instruction_t instructions[] = {{"pall", pall}, {"pint", pint}, {"pop", pop},
 {"swap", swap}, {"add", add}, {"nop", nop}, {"sub", sub}, {"div", _div},
-{"mul", mul}, {"mod", mod}, {NULL, NULL}};
+{"mul", mul}, {"mod", mod}, {"pchar", pchar}, {"pstr", pstr}, {"rotl", rotl},
+{"rotr", rotr}, {NULL, NULL}};
 int i = 0;
 
 while (instructions[i].opcode)
