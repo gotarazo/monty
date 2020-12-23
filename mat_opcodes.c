@@ -34,12 +34,20 @@ void _div(stack_t **stack, unsigned int line_number)
 {
 stack_t *tmp = *stack;
 
-if (*stack && (*stack)->next && (*stack)->n != 0)
+if (*stack && (*stack)->next)
+{
+if ((*stack)->n != 0)
 {
 tmp = (*stack)->next;
 (*stack)->next->n = (*stack)->next->n / (*stack)->n;
 pop(stack, line_number);
 *stack = tmp;
+}
+else
+{
+fprintf(stderr, "L%d: division by zero\n", line_n);
+exit(EXIT_FAILURE);
+}
 }
 else
 {
@@ -75,7 +83,7 @@ exit(EXIT_FAILURE);
 }
 
 /**
-* mod -Computes the rest of the division of the 2nd top element by the top element
+* mod -Computes rest of division of 2nd top element by the top element
 * @stack: Pointer to stack (DL-List)
 * @line_number: Lenght of the list
 */
