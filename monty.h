@@ -6,6 +6,8 @@
 #include <string.h>
 
 extern int nb_line;
+extern int Queue;
+#define EXT int Queue = 0
 #define EXTERN int nb_line = 0
 
 /**
@@ -42,6 +44,7 @@ void execute(char *opcode, stack_t **stack, FILE *script);
 void check_if_integer(char *number);
 
 stack_t *push(stack_t **stack, int n);
+stack_t *pushq(stack_t **stack, int n);
 void pall(stack_t **stack, unsigned int line_number);
 void free_stack(stack_t *stack);
 

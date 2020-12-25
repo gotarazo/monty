@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 EXTERN;
+EXT;
 
 /**
 * check_instruction -Check for instructions
@@ -15,7 +16,7 @@ void (*check_instruction(char *command))(stack_t**, unsigned int)
 instruction_t instructions[] = {{"pall", pall}, {"pint", pint}, {"pop", pop},
 {"swap", swap}, {"add", add}, {"nop", nop}, {"sub", sub}, {"div", _div},
 {"mul", mul}, {"mod", mod}, {"pchar", pchar}, {"pstr", pstr}, {"rotl", rotl},
-{"rotr", rotr}, {NULL, NULL}};
+{"rotr", rotr}, {"stack", nop}, {"queue", nop}, {NULL, NULL}};
 int i = 0;
 
 while (instructions[i].opcode)
@@ -45,12 +46,19 @@ nb_line++;
 if (*opcode == '\n' || !ins || *ins == '#')
 return;
 
-if (!strcmp(ins, "push"))
+else if (!strcmp(ins, "queue"))
+Queue = 1;
+
+else if (!strcmp(ins, "stack"))
+Queue = 0;
+
+else if (!strcmp(ins, "push"))
 {
 if (!arg)
 {
 if (*stack)
 free_stack(*stack);
+
 fclose(script);
 free(opcode);
 fprintf(stderr, "L%d: usage: push integer\n", nb_line);
@@ -58,7 +66,12 @@ exit(EXIT_FAILURE);
 }
 check_if_integer(arg);
 n = atoi(arg);
+if (Queue == 1)
+*stack = pushq(stack, n);
+
+else
 *stack = push(stack, n);
+
 return;
 }
 function = check_instruction(ins);
@@ -66,6 +79,7 @@ if (!function)
 {
 if (*stack)
 free_stack(*stack);
+
 fclose(script);
 fprintf(stderr, "L%d: unknown instruction %s\n", nb_line, ins);
 free(opcode);
